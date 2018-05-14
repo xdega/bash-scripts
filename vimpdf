@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Printing $1 to pdf..."
+vim -e -c "hardcopy > %.ps" -c q $1 >/dev/null
+pstopdf $1.ps
+mv $1.pdf ~
+rm $1.ps
+cd ~ && open $1.pdf

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# default to help file if parameters missing
+if [[ "$*" == "" || "$1" == "" || "$2" == "" || "$3" == "" ]]; then
+  set -- "-h" 
+fi
+
+# help file
+if [ "$1" == "-h" ]; then
+  echo "fr [search term] [replacement] [search directory]"
+  exit 0
+fi
+
+# main
+FIND=$1
+REPLACE=$2
+DIRECTORY=$3
+
+grep -rl $FIND $DIRECTORY | sort | uniq | xargs perl -e "s/$FIND/$REPLACE/" -pi
