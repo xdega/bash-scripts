@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cat /dev/urandom | tr -dc 'A-Z' | fold -w $1 | head -n 1
